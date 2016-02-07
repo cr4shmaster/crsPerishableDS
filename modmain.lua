@@ -60,7 +60,7 @@ function crsCustomPerishable(inst)
 
     if GLOBAL.GetSeasonManager() and GLOBAL.GetSeasonManager():GetCurrentTemperature() > TUNING.OVERHEAT_TEMP then
      modifier = modifier * TUNING.PERISH_SUMMER_MULT
-    end		
+    end
 
     modifier = modifier * TUNING.PERISH_GLOBAL_MULT
 
@@ -137,7 +137,7 @@ function crsCustomPerishable(inst)
 
     if GLOBAL.GetSeasonManager() and GLOBAL.GetSeasonManager():GetCurrentTemperature() > TUNING.OVERHEAT_TEMP then
      modifier = modifier * TUNING.PERISH_SUMMER_MULT
-    end		
+    end
 
     modifier = modifier * TUNING.PERISH_GLOBAL_MULT
 
@@ -155,7 +155,7 @@ function crsCustomPerishable(inst)
   end
  else
   inst.CustomUpdate = function (this, dt)
-   if this.components.perishable then		
+   if this.components.perishable then
     local modifier = 1
     local owner = this.components.inventoryitem and this.components.inventoryitem.owner or nil
     if owner then
