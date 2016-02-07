@@ -1,4 +1,4 @@
-name = "Perishable TEST"
+name = "Perishable v2.1"
 description = "This mod is required by other mods that are using 'perishable.lua'."
 author = "cr4shmaster"
 version = "2.1.0"
