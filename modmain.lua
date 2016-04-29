@@ -212,7 +212,7 @@ function crsCustomPerishable(inst)
   if self.updatetask then
    self.updatetask:Cancel()
    self.updatetask = nil
-   end
+  end
 
    local dt = 10 + math.random()*GLOBAL.FRAMES*8 -- math.max( 4, math.min( self.perishtime / 100, 10)) + ( math.random()* FRAMES * 8)
 
