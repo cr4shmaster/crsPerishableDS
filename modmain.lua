@@ -1,4 +1,5 @@
 function crsCustomPerishable(inst)
+-- REIGN OF GIANTS --
  if GLOBAL.IsDLCEnabled(GLOBAL.REIGN_OF_GIANTS) then
   inst.CustomUpdate = function (this, dt)
    if this.components.perishable then
@@ -13,12 +14,14 @@ function crsCustomPerishable(inst)
       end
      elseif owner:HasTag("spoiler") then
       modifier = TUNING.PERISH_GROUND_MULT
-     elseif owner:HasTag("crsCustomPerishMult") then -- added
+-- ADDED --
+     elseif owner:HasTag("crsCustomPerishMult") then
       if this:HasTag("frozen") and not owner:HasTag("nocool") and not owner:HasTag("lowcool") then
        modifier = TUNING.PERISH_COLD_FROZEN_MULT
       else
        modifier = owner.crsCustomPerishMult
       end
+-- EXISTING --
      end
     else
      modifier = TUNING.PERISH_GROUND_MULT
@@ -29,10 +32,12 @@ function crsCustomPerishable(inst)
       if not owner:HasTag("nocool") then
        this.components.edible.temperatureduration = this.components.edible.temperatureduration - 1
       end
+-- ADDED --
      elseif owner and owner:HasTag("crsCustomTempDuration") then
       if not owner:HasTag("nocool") then
        this.components.edible.temperatureduration = this.components.edible.temperatureduration + owner.crsCustomTempDuration
       end
+-- EXISTING --
      elseif GLOBAL.GetSeasonManager() and GLOBAL.GetSeasonManager():GetCurrentTemperature() < TUNING.OVERHEAT_TEMP - 5 then
       this.components.edible.temperatureduration = this.components.edible.temperatureduration - .25
      end
@@ -65,9 +70,9 @@ function crsCustomPerishable(inst)
     modifier = modifier * TUNING.PERISH_GLOBAL_MULT
 
     local old_val = this.components.perishable.perishremainingtime
-    local delta = dt or (10 + math.random()*FRAMES*8)
+    local delta = dt or (10 + math.random() * FRAMES * 8)
     this.components.perishable.perishremainingtime = this.components.perishable.perishremainingtime - delta*modifier
-    if math.floor(old_val*100) ~= math.floor(this.components.perishable.perishremainingtime*100) then
+    if math.floor(old_val * 100) ~= math.floor(this.components.perishable.perishremainingtime * 100) then
      this:PushEvent("perishchange", {percent = this.components.perishable:GetPercent()})
     end
 
@@ -76,6 +81,7 @@ function crsCustomPerishable(inst)
     end
    end
   end
+-- SHIPWRECKED --
  elseif GLOBAL.IsDLCEnabled(GLOBAL.CAPY_DLC) then
   inst.CustomUpdate = function (this, dt)
    if this.components.perishable then
@@ -88,28 +94,35 @@ function crsCustomPerishable(inst)
       else
       modifier = TUNING.PERISH_FRIDGE_MULT 
       end
+     elseif owner:HasTag("spoiler") and owner:HasTag("poison") then
+      modifier = TUNING.PERISH_POISON_MULT
      elseif owner:HasTag("spoiler") then
       modifier = TUNING.PERISH_GROUND_MULT
-     elseif owner:HasTag("crsCustomPerishMult") then -- added
+-- ADDED --
+     elseif owner:HasTag("crsCustomPerishMult") then
       if this:HasTag("frozen") and not owner:HasTag("nocool") and not owner:HasTag("lowcool") then
        modifier = TUNING.PERISH_COLD_FROZEN_MULT
       else
        modifier = owner.crsCustomPerishMult
       end
+-- EXISTING --
      end
     else
      modifier = TUNING.PERISH_GROUND_MULT
     end
 
+    -- cool off hot foods over time (faster if in a fridge)
     if this.components.edible and this.components.edible.temperaturedelta and this.components.edible.temperaturedelta > 0 then
      if owner and owner:HasTag("fridge") then
       if not owner:HasTag("nocool") then
        this.components.edible.temperatureduration = this.components.edible.temperatureduration - 1
       end
+-- ADDED --
      elseif owner and owner:HasTag("crsCustomTempDuration") then
       if not owner:HasTag("nocool") then
        this.components.edible.temperatureduration = this.components.edible.temperatureduration + owner.crsCustomTempDuration
       end
+-- EXISTING --
      elseif GLOBAL.GetSeasonManager() and GLOBAL.GetSeasonManager():GetCurrentTemperature() < TUNING.OVERHEAT_TEMP - 5 then
       this.components.edible.temperatureduration = this.components.edible.temperatureduration - .25
      end
@@ -142,17 +155,18 @@ function crsCustomPerishable(inst)
     modifier = modifier * TUNING.PERISH_GLOBAL_MULT
 
     local old_val = this.components.perishable.perishremainingtime
-    local delta = dt or (10 + math.random()*FRAMES*8)
-    this.components.perishable.perishremainingtime = this.components.perishable.perishremainingtime - delta*modifier
-    if math.floor(old_val*100) ~= math.floor(this.components.perishable.perishremainingtime*100) then
+    local delta = dt or (10 + math.random() * FRAMES * 8)
+    this.components.perishable.perishremainingtime = this.components.perishable.perishremainingtime - delta * modifier
+    if math.floor(old_val * 100) ~= math.floor(this.components.perishable.perishremainingtime * 100) then
      this:PushEvent("perishchange", {percent = this.components.perishable:GetPercent()})
     end
-
+    -- trigger the next callback
     if this.components.perishable.perishremainingtime <= 0 then
      this.components.perishable:Perish()
     end
    end
   end
+ -- VANILLA --
  else
   inst.CustomUpdate = function (this, dt)
    if this.components.perishable then
@@ -163,9 +177,11 @@ function crsCustomPerishable(inst)
       modifier = TUNING.PERISH_FRIDGE_MULT
      elseif owner:HasTag("spoiler") then
       modifier = TUNING.PERISH_GROUND_MULT
+-- ADDED --
      elseif owner:HasTag("crsCustomPerishMult") then -- added
       modifier = owner.crsCustomPerishMult
      end
+-- EXISTING --
     else
      modifier = TUNING.PERISH_GROUND_MULT 
     end
@@ -178,7 +194,7 @@ function crsCustomPerishable(inst)
 
     local old_val = this.components.perishable.perishremainingtime
     this.components.perishable.perishremainingtime = this.components.perishable.perishremainingtime - dt*modifier
-    if math.floor(old_val*100) ~= math.floor(this.components.perishable.perishremainingtime*100) then
+    if math.floor(old_val * 100) ~= math.floor(this.components.perishable.perishremainingtime * 100) then
      this:PushEvent("perishchange", {percent = this.components.perishable:GetPercent()})
     end
 
@@ -189,35 +205,40 @@ function crsCustomPerishable(inst)
   end
  end
 
+-- REIGN OF GIANTS --
  if GLOBAL.IsDLCEnabled(GLOBAL.REIGN_OF_GIANTS) then
   inst.LongUpdate = function(self, dt)
    if self.updatetask then
     inst.CustomUpdate(self.inst, dt or 0)
    end
   end
+-- SHIPWRECKED --
  elseif GLOBAL.IsDLCEnabled(GLOBAL.CAPY_DLC) then
   inst.LongUpdate = function(self, dt)
    if self.updatetask then
     inst.CustomUpdate(self.inst, dt or 0)
    end
   end
+ -- VANILLA --
  else
   inst.LongUpdate = function(self, dt)
-   print("test ok")
+   -- print("Test OK.")
    inst.CustomUpdate(self.inst, dt)
   end
  end
 
+-- ALL --
  inst.StartPerishing = function (self)
   if self.updatetask then
    self.updatetask:Cancel()
    self.updatetask = nil
   end
 
-   local dt = 10 + math.random()*GLOBAL.FRAMES*8 -- math.max( 4, math.min( self.perishtime / 100, 10)) + ( math.random()* FRAMES * 8)
+   local dt = 10 + math.random() * GLOBAL.FRAMES * 8
+   -- math.max(4, math.min(self.perishtime / 100, 10))+(math.random() * FRAMES * 8)
 
    if dt > 0 then
-    self.updatetask = self.inst:DoPeriodicTask(dt, inst.CustomUpdate, math.random()*2, dt)
+    self.updatetask = self.inst:DoPeriodicTask(dt, inst.CustomUpdate, math.random() * 2, dt)
    else
     inst:CustomUpdate(self.inst, 0)
    end
