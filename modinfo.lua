@@ -2,7 +2,6 @@
 --  when it comes to perishable.lua; instead of each mod altering that file,
 --  Perishable does it once and all other mods only need a couple lines of 
 --  code to use it.
-
 -- To add a custom perish multiplier to an item, add the following code to the
 --  main function of that item:
 --   inst:AddTag("crsCustomPerishMult")
@@ -11,19 +10,18 @@
 --  Use the following format, where myModPerishMult and xxxxxxxxx should be replaced
 --  with the name of the option in your modinfo and your mod's workshop ID respectively: 
 --   inst.crsCustomPerishMult = GetModConfigData("myModPerishMult", "workshop-xxxxxxxxx")
-
 -- Similarly, to add a custom value for temperature duration to an item, add the following
 --  code the main function of that item:
 --   inst:AddTag("crsCustomTempDuration")
 --   inst.crsCustomTempDuration = GetModConfigData("myModTempDuration", "workshop-xxxxxxxxx") 
 
--- Author:
--- cr4shmaster: http://steamcommunity.com/id/cr4shmaster
+-- Workshop Page: http://steamcommunity.com/sharedfiles/filedetails/?id=442602018
+-- Author: cr4shmaster: http://steamcommunity.com/id/cr4shmaster
 
 name = "Perishable v2.1"
 description = "This mod is required by other mods that are using 'perishable.lua'."
 author = "cr4shmaster"
-version = "2.1.3.1"
+version = "2.1.3.2"
 forumthread = ""
 api_version = 6
 dont_starve_compatible = true
