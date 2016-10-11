@@ -1,5 +1,10 @@
 # Perishable for Don't Starve
-<a href=http://steamcommunity.com/workshop/filedetails/?id=442602018>![Steam Workshop](https://lh5.googleusercontent.com/Dto-cEP3GcC0bNenQyt4hE-g2nUPv9bXFLDzQi514vZx5F3CmRMu8zVwscGdsRCiRJdp-Zo1jUE5o5c=w1920-h960 "Steam Workshop")</a>
+[![Vanilla](https://img.shields.io/badge/vanilla-yes-brightgreen.svg)](http://steamcommunity.com/workshop/filedetails/?id=442602018) 
+[![Reign of Giants](https://img.shields.io/badge/RoG-yes-brightgreen.svg)](http://steamcommunity.com/workshop/filedetails/?id=442602018) 
+[![Shipwrecked](https://img.shields.io/badge/SW-yes-brightgreen.svg)](http://steamcommunity.com/workshop/filedetails/?id=442602018) 
+[![Steam Workshop](https://img.shields.io/badge/steam-workshop-blue.svg)](http://steamcommunity.com/workshop/filedetails/?id=442602018) 
+[![Paypal Donation](https://img.shields.io/badge/donate-paypal-orange.svg)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=7AJKEDU7BYRRG) 
+[![Steam Trade Offer](https://img.shields.io/badge/donate-steam%20trade%20offer-orange.svg)](https://steamcommunity.com/tradeoffer/new/?partner=42003848&token=tB7Jhg1K)
 
 #### Vanilla, Reign of Giants and Shipwrecked compatible.
 
@@ -24,4 +29,5 @@ inst.crsCustomTempDuration = GetModConfigData("myModTempDuration", "workshop-xxx
 ###  Additional information:
 To install this mod you simply have to subscribe on the Steam Workshop and it will automatically be downloaded the next time you access the mods menu in the game.</br>
 If your game crashes in the mod menu, try disabling __Small Textures__ in the game's settings.</br>
-If you have any suggestions, feel free to post them in the comment section on the Workshop page. 
+If you have any suggestions, feel free to post them in the comment section on the Workshop page.
+
